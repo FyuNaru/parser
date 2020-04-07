@@ -1,9 +1,10 @@
 ﻿  ParserLogger.cpp
   parsertest.cpp
-    正在创建库 E:\VisualStudio\workspaceI\cent\src\x64\Release\parsertest.lib 和对象 E:\VisualStudio\workspaceI\cent\src\x64\Release\parsertest.exp
+  grammar_case_def.cpp
+    正在创建库 C:\Users\LXT\Desktop\parser\parser\cent\src\x64\Release\parsertest.lib 和对象 C:\Users\LXT\Desktop\parser\parser\cent\src\x64\Release\parsertest.exp
   正在生成代码
-  4 of 2974 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  2957 of 2974 functions (99.4%) were compiled, the rest were copied from previous compilation.
+    30 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
-  parsertest.vcxproj -> E:\VisualStudio\workspaceI\cent\src\x64\Release\parsertest.dll
+  parsertest.vcxproj -> C:\Users\LXT\Desktop\parser\parser\cent\src\x64\Release\parsertest.dll
