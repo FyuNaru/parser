@@ -1,0 +1,7 @@
+﻿E:\VisualStudio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8004: Intermediate 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Intermediate 目录。
+E:\VisualStudio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: Output 目录未以斜杠结尾。  此生成实例将添加斜杠，因为必须有这个斜杠才能正确计算 Output 目录。
+  def.cpp
+  parser.vcxproj -> E:\VisualStudio\workspaceI\cent\src\..\temp\link\Debug\parser.exe
+  已复制         1 个文件。
+  E:\VisualStudio\workspaceI\cent\src\..\3rd\dll\Debug\no.txt
+  已复制         1 个文件。

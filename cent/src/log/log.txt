@@ -1,0 +1,2092 @@
+=======================================
+             State Number: 0
+=======================================
+[Kernel Items]
+P' -> @ Program 
+		($ )
+
+[Non-Kernel Items]
+FuncDec -> @ Type id ( Params ) CompStmt 
+		(int bool double $ )
+Dec -> @ VarDec 
+		(int bool double $ )
+Dec -> @ FuncDec 
+		(int bool double $ )
+DecList -> @ DecList Dec 
+		(int bool double $ )
+DecList -> @ Dec 
+		(int bool double $ )
+Program -> @ DecList 
+		($ )
+Type -> @ int 
+		(id )
+Type -> @ bool 
+		(id )
+VarDec -> @ Type IdList ; 
+		(int bool double $ )
+Type -> @ double 
+		(id )
+=======================================
+             State Number: 1
+=======================================
+[Kernel Items]
+DecList -> Dec @ 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 2
+=======================================
+[Kernel Items]
+DecList -> DecList @ Dec 
+		(int bool double $ )
+Program -> DecList @ 
+		($ )
+
+[Non-Kernel Items]
+Type -> @ int 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ double 
+		(id )
+VarDec -> @ Type IdList ; 
+		(int bool double $ )
+FuncDec -> @ Type id ( Params ) CompStmt 
+		(int bool double $ )
+Dec -> @ VarDec 
+		(int bool double $ )
+Dec -> @ FuncDec 
+		(int bool double $ )
+=======================================
+             State Number: 3
+=======================================
+[Kernel Items]
+P' -> Program @ 
+		($ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 4
+=======================================
+[Kernel Items]
+Type -> int @ 
+		(id )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 5
+=======================================
+[Kernel Items]
+Dec -> VarDec @ 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 6
+=======================================
+[Kernel Items]
+Type -> bool @ 
+		(id )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 7
+=======================================
+[Kernel Items]
+VarDec -> Type @ IdList ; 
+		(int bool double $ )
+FuncDec -> Type @ id ( Params ) CompStmt 
+		(int bool double $ )
+
+[Non-Kernel Items]
+IdList -> @ VarIni 
+		(; , )
+IdList -> @ IdList , VarIni 
+		(; , )
+VarIni -> @ VarId = SimpleE 
+		(; , )
+VarIni -> @ VarId 
+		(; , )
+VarId -> @ id [ const ] 
+		(; = , )
+VarId -> @ id 
+		(; = , )
+=======================================
+             State Number: 8
+=======================================
+[Kernel Items]
+Dec -> FuncDec @ 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 9
+=======================================
+[Kernel Items]
+Type -> double @ 
+		(id )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 10
+=======================================
+[Kernel Items]
+IdList -> VarIni @ 
+		(; , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 11
+=======================================
+[Kernel Items]
+IdList -> IdList @ , VarIni 
+		(; , )
+VarDec -> Type IdList @ ; 
+		(} else while if int { ; * bool id double not - ( const $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 12
+=======================================
+[Kernel Items]
+VarId -> id @ 
+		(; = , )
+VarId -> id @ [ const ] 
+		(; = , )
+FuncDec -> Type id @ ( Params ) CompStmt 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 13
+=======================================
+[Kernel Items]
+VarIni -> VarId @ = SimpleE 
+		(; , )
+VarIni -> VarId @ 
+		(; , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 14
+=======================================
+[Kernel Items]
+VarIni -> VarId = @ SimpleE 
+		(; , )
+
+[Non-Kernel Items]
+RelE -> @ SumE Relop SumE 
+		(or and ; , )
+RelE -> @ SumE 
+		(or and ; , )
+NE -> @ not NE 
+		(or and ; , )
+NE -> @ RelE 
+		(or and ; , )
+AndE -> @ AndE and NE 
+		(or and ; , )
+AndE -> @ NE 
+		(or and ; , )
+SimpleE -> @ SimpleE or AndE 
+		(or ; , )
+SimpleE -> @ AndE 
+		(or ; , )
+SumE -> @ MulE 
+		(< != <= == > or >= and + - ; , )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > or >= and + - ; , )
+MulE -> @ UE 
+		(!= < <= == > or >= and + - * / % ; , )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > or >= and + - * / % ; , )
+UE -> @ Factor 
+		(< != <= == > or >= and + - * / % ; , )
+UE -> @ Uop UE 
+		(< != <= == > or >= and + - * / % ; , )
+Factor -> @ Mut 
+		(!= < <= == > or >= and + - * / % ; , )
+Factor -> @ IMut 
+		(!= < <= == > or >= and + - * / % ; , )
+Call -> @ id ( Args ) 
+		(!= < <= == > or >= and + - * / % ; , )
+IMut -> @ ( Expr ) 
+		(< != <= == > or >= and + - * / % ; , )
+IMut -> @ Call 
+		(< != <= == > or >= and + - * / % ; , )
+IMut -> @ const 
+		(< != <= == > or >= and + - * / % ; , )
+Mut -> @ Mut [ Expr ] 
+		(< != <= == > or >= and + - * / % [ ; , )
+Mut -> @ id 
+		(< != <= == > or >= and + - * / % [ ; , )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+=======================================
+             State Number: 15
+=======================================
+[Kernel Items]
+VarIni -> VarId = SimpleE @ 
+		(; , )
+SimpleE -> SimpleE @ or AndE 
+		(; , or )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 16
+=======================================
+[Kernel Items]
+Factor -> Mut @ 
+		(<= ; != < , ) or == > >= and + - * / % ] )
+Mut -> Mut @ [ Expr ] 
+		(<= ; < != , ) or == > >= and + - * / % [ ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 17
+=======================================
+[Kernel Items]
+AndE -> AndE @ and NE 
+		(; , ) or and ] )
+SimpleE -> AndE @ 
+		(; , ) or ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 18
+=======================================
+[Kernel Items]
+SumE -> MulE @ 
+		(; < != , or ) and ] <= == > >= + - )
+MulE -> MulE @ Mop UE 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+Mop -> @ % 
+		(id - * ( const )
+Mop -> @ / 
+		(id - * ( const )
+Mop -> @ * 
+		(id - * ( const )
+=======================================
+             State Number: 19
+=======================================
+[Kernel Items]
+AndE -> NE @ 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 20
+=======================================
+[Kernel Items]
+NE -> not @ NE 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+Uop -> @ - 
+		(- id * ( const )
+Uop -> @ * 
+		(- id * ( const )
+Mut -> @ id 
+		(< != [ <= == > >= + - % * / ; , or ) and ] )
+Mut -> @ Mut [ Expr ] 
+		(< != [ <= == > >= + - % * / ; , or ) and ] )
+IMut -> @ const 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+IMut -> @ Call 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+IMut -> @ ( Expr ) 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+Call -> @ id ( Args ) 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+Factor -> @ IMut 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+Factor -> @ Mut 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+UE -> @ Uop UE 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+UE -> @ Factor 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+NE -> @ RelE 
+		(; , or ) and ] )
+NE -> @ not NE 
+		(; , or ) and ] )
+RelE -> @ SumE 
+		(; , or ) and ] )
+RelE -> @ SumE Relop SumE 
+		(; , or ) and ] )
+SumE -> @ MulE 
+		(< != + <= == > >= - ; , or ) and ] )
+SumE -> @ SumE Sop MulE 
+		(< != + <= == > >= - ; , or ) and ] )
+MulE -> @ UE 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+MulE -> @ MulE Mop UE 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+=======================================
+             State Number: 21
+=======================================
+[Kernel Items]
+NE -> RelE @ 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 22
+=======================================
+[Kernel Items]
+MulE -> UE @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 23
+=======================================
+[Kernel Items]
+IMut -> ( @ Expr ) 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < <= == > ) or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < <= == > ) or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= == > ) or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < <= == > ) or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= == > ) or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= == > ) or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > ) or >= and + - * / % )
+MulE -> @ UE 
+		(!= < <= == > ) or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > ) or >= and + - )
+SumE -> @ MulE 
+		(< != <= == > ) or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(or ) and )
+RelE -> @ SumE 
+		(or ) and )
+NE -> @ not NE 
+		(or ) and )
+NE -> @ RelE 
+		(or ) and )
+Expr -> @ SimpleE 
+		() )
+Expr -> @ Mut = Expr 
+		() )
+SimpleE -> @ AndE 
+		(or ) )
+SimpleE -> @ SimpleE or AndE 
+		(or ) )
+Mut -> @ id 
+		(= <= [ < != == > or ) >= and + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > or ) >= and + - * / % )
+AndE -> @ NE 
+		(or ) and )
+AndE -> @ AndE and NE 
+		(or ) and )
+=======================================
+             State Number: 24
+=======================================
+[Kernel Items]
+SumE -> SumE @ Sop MulE 
+		(; < != , or ) and ] <= == > >= + - )
+RelE -> SumE @ 
+		(; , ) or and ] )
+RelE -> SumE @ Relop SumE 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+Sop -> @ + 
+		(- id * ( const )
+Sop -> @ - 
+		(- id * ( const )
+Relop -> @ < 
+		(- id * ( const )
+Relop -> @ <= 
+		(- id * ( const )
+Relop -> @ == 
+		(- id * ( const )
+Relop -> @ != 
+		(- id * ( const )
+Relop -> @ > 
+		(- id * ( const )
+Relop -> @ >= 
+		(- id * ( const )
+=======================================
+             State Number: 25
+=======================================
+[Kernel Items]
+UE -> Uop @ UE 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+Factor -> @ IMut 
+		(; , < != or ) and ] <= == > >= + - * / % )
+Factor -> @ Mut 
+		(; , < != or ) and ] <= == > >= + - * / % )
+UE -> @ Uop UE 
+		(; , < != or ) and ] <= == > >= + - * / % )
+UE -> @ Factor 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ const 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ Call 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ ( Expr ) 
+		(; , < != or ) and ] <= == > >= + - * / % )
+Call -> @ id ( Args ) 
+		(; , < != or ) and ] <= == > >= + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+Mut -> @ id 
+		(; [ , < != or ) and ] <= == > >= + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(; [ , < != or ) and ] <= == > >= + - * / % )
+=======================================
+             State Number: 26
+=======================================
+[Kernel Items]
+UE -> Factor @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 27
+=======================================
+[Kernel Items]
+Uop -> - @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 28
+=======================================
+[Kernel Items]
+Uop -> * @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 29
+=======================================
+[Kernel Items]
+Factor -> IMut @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 30
+=======================================
+[Kernel Items]
+IMut -> Call @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 31
+=======================================
+[Kernel Items]
+IMut -> const @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 32
+=======================================
+[Kernel Items]
+Call -> id @ ( Args ) 
+		(; != < , or ) and ] <= == > >= + - * / % )
+Mut -> id @ 
+		(; != < , or ) and ] <= == > >= + - * / % [ = )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 33
+=======================================
+[Kernel Items]
+Call -> id ( @ Args ) 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+SimpleE -> @ SimpleE or AndE 
+		() or , )
+SimpleE -> @ AndE 
+		() or , )
+Expr -> @ Mut = Expr 
+		() , )
+Expr -> @ SimpleE 
+		() , )
+ArgList -> @ ArgList , Expr 
+		() , )
+Args -> @ ArgList 
+		() )
+Args ->  @ 
+		() )
+Mut -> @ id 
+		(= <= [ < != == > ) or >= , and + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > ) or >= , and + - * / % )
+AndE -> @ NE 
+		() or , and )
+AndE -> @ AndE and NE 
+		() or , and )
+NE -> @ RelE 
+		() or , and )
+NE -> @ not NE 
+		() or , and )
+RelE -> @ SumE 
+		() or , and )
+RelE -> @ SumE Relop SumE 
+		() or , and )
+SumE -> @ MulE 
+		(, < != <= == > >= ) or and + - )
+SumE -> @ SumE Sop MulE 
+		(, < != <= == > >= ) or and + - )
+MulE -> @ UE 
+		(, != < <= == > ) or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(, != < <= == > ) or >= and + - * / % )
+UE -> @ Factor 
+		(, < != <= == > >= ) or and + - * / % )
+UE -> @ Uop UE 
+		(, < != <= == > >= ) or and + - * / % )
+Call -> @ id ( Args ) 
+		(, != < <= == > ) or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(, < != <= == > >= ) or and + - * / % )
+IMut -> @ Call 
+		(, < != <= == > >= ) or and + - * / % )
+IMut -> @ const 
+		(, < != <= == > >= ) or and + - * / % )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+Factor -> @ IMut 
+		(, != < <= == > ) or >= and + - * / % )
+Factor -> @ Mut 
+		(, != < <= == > ) or >= and + - * / % )
+ArgList -> @ Expr 
+		() , )
+=======================================
+             State Number: 34
+=======================================
+[Kernel Items]
+Call -> id ( Args @ ) 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 35
+=======================================
+[Kernel Items]
+ArgList -> ArgList @ , Expr 
+		() , )
+Args -> ArgList @ 
+		() )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 36
+=======================================
+[Kernel Items]
+SimpleE -> SimpleE @ or AndE 
+		(or ) , ] ; )
+Expr -> SimpleE @ 
+		() , ] ; )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 37
+=======================================
+[Kernel Items]
+ArgList -> Expr @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 38
+=======================================
+[Kernel Items]
+Expr -> Mut @ = Expr 
+		() , ] ; )
+Mut -> Mut @ [ Expr ] 
+		(or ) < != , = <= [ == > >= and + - * / % ] ; )
+Factor -> Mut @ 
+		() or != < , <= == > >= and + - * / % ] ; )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 39
+=======================================
+[Kernel Items]
+Mut -> Mut [ @ Expr ] 
+		(<= ; < != , ) or == > >= and + - * / % [ ] = )
+
+[Non-Kernel Items]
+AndE -> @ AndE and NE 
+		(] or and )
+AndE -> @ NE 
+		(] or and )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > >= ] or and + - * / % )
+Mut -> @ id 
+		(= <= [ < != == > >= ] or and + - * / % )
+SimpleE -> @ SimpleE or AndE 
+		(] or )
+SimpleE -> @ AndE 
+		(] or )
+Expr -> @ Mut = Expr 
+		(] )
+Expr -> @ SimpleE 
+		(] )
+NE -> @ RelE 
+		(] or and )
+NE -> @ not NE 
+		(] or and )
+RelE -> @ SumE 
+		(] or and )
+RelE -> @ SumE Relop SumE 
+		(] or and )
+SumE -> @ MulE 
+		(< != <= == > or >= ] and + - )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > or >= ] and + - )
+MulE -> @ UE 
+		(!= < <= == > or >= ] and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > or >= ] and + - * / % )
+UE -> @ Factor 
+		(< != <= == > or >= ] and + - * / % )
+UE -> @ Uop UE 
+		(< != <= == > or >= ] and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < <= == > or >= ] and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= == > or >= ] and + - * / % )
+IMut -> @ Call 
+		(< != <= == > or >= ] and + - * / % )
+IMut -> @ const 
+		(< != <= == > or >= ] and + - * / % )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+Factor -> @ IMut 
+		(!= < <= == > or >= ] and + - * / % )
+Factor -> @ Mut 
+		(!= < <= == > or >= ] and + - * / % )
+=======================================
+             State Number: 40
+=======================================
+[Kernel Items]
+Expr -> Mut = @ Expr 
+		() , ] ; )
+
+[Non-Kernel Items]
+AndE -> @ AndE and NE 
+		() or and , ] ; )
+AndE -> @ NE 
+		() or and , ] ; )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > >= ) or and + - * / % , ] ; )
+Mut -> @ id 
+		(= <= [ < != == > >= ) or and + - * / % , ] ; )
+SimpleE -> @ SimpleE or AndE 
+		() or , ] ; )
+SimpleE -> @ AndE 
+		() or , ] ; )
+Expr -> @ Mut = Expr 
+		() , ] ; )
+Expr -> @ SimpleE 
+		() , ] ; )
+NE -> @ RelE 
+		() or and , ] ; )
+NE -> @ not NE 
+		() or and , ] ; )
+RelE -> @ SumE 
+		() or and , ] ; )
+RelE -> @ SumE Relop SumE 
+		() or and , ] ; )
+SumE -> @ MulE 
+		(< != <= == > ) or >= and + - , ] ; )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > ) or >= and + - , ] ; )
+MulE -> @ UE 
+		(!= < <= == > ) or >= and + - * / % , ] ; )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > ) or >= and + - * / % , ] ; )
+UE -> @ Factor 
+		(< != <= == > ) or >= and + - * / % , ] ; )
+UE -> @ Uop UE 
+		(< != <= == > ) or >= and + - * / % , ] ; )
+Call -> @ id ( Args ) 
+		(!= < <= == > ) or >= and + - * / % , ] ; )
+IMut -> @ ( Expr ) 
+		(< != <= == > ) or >= and + - * / % , ] ; )
+IMut -> @ Call 
+		(< != <= == > ) or >= and + - * / % , ] ; )
+IMut -> @ const 
+		(< != <= == > ) or >= and + - * / % , ] ; )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+Factor -> @ IMut 
+		(!= < <= == > ) or >= and + - * / % , ] ; )
+Factor -> @ Mut 
+		(!= < <= == > ) or >= and + - * / % , ] ; )
+=======================================
+             State Number: 41
+=======================================
+[Kernel Items]
+Expr -> Mut = Expr @ 
+		() , ] ; )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 42
+=======================================
+[Kernel Items]
+Mut -> Mut [ Expr @ ] 
+		(<= ; < != , ) or == > >= and + - * / % [ ] = )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 43
+=======================================
+[Kernel Items]
+Mut -> Mut [ Expr ] @ 
+		(<= ; < != , ) or == > >= and + - * / % [ ] = )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 44
+=======================================
+[Kernel Items]
+SimpleE -> SimpleE or @ AndE 
+		(; , ) or ] )
+
+[Non-Kernel Items]
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+Mut -> @ id 
+		(< != + <= == > >= and - * / % [ ; , or ) ] )
+Mut -> @ Mut [ Expr ] 
+		(< != + <= == > >= and - * / % [ ; , or ) ] )
+IMut -> @ const 
+		(< != + <= == > >= and - * / % ; , or ) ] )
+IMut -> @ Call 
+		(< != + <= == > >= and - * / % ; , or ) ] )
+IMut -> @ ( Expr ) 
+		(< != + <= == > >= and - * / % ; , or ) ] )
+Call -> @ id ( Args ) 
+		(!= < + <= == > >= and - * / % ; , or ) ] )
+Factor -> @ IMut 
+		(!= < + <= == > >= and - * / % ; , or ) ] )
+Factor -> @ Mut 
+		(!= < + <= == > >= and - * / % ; , or ) ] )
+UE -> @ Uop UE 
+		(< != + <= == > >= and - * / % ; , or ) ] )
+UE -> @ Factor 
+		(< != + <= == > >= and - * / % ; , or ) ] )
+MulE -> @ MulE Mop UE 
+		(!= < + <= == > >= and - * / % ; , or ) ] )
+MulE -> @ UE 
+		(!= < + <= == > >= and - * / % ; , or ) ] )
+AndE -> @ NE 
+		(and ; , or ) ] )
+AndE -> @ AndE and NE 
+		(and ; , or ) ] )
+NE -> @ RelE 
+		(and ; , or ) ] )
+NE -> @ not NE 
+		(and ; , or ) ] )
+RelE -> @ SumE 
+		(and ; , or ) ] )
+RelE -> @ SumE Relop SumE 
+		(and ; , or ) ] )
+SumE -> @ MulE 
+		(< != + <= == > >= and - ; , or ) ] )
+SumE -> @ SumE Sop MulE 
+		(< != + <= == > >= and - ; , or ) ] )
+=======================================
+             State Number: 45
+=======================================
+[Kernel Items]
+AndE -> AndE @ and NE 
+		(; , ) or ] and )
+SimpleE -> SimpleE or AndE @ 
+		(; , ) or ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 46
+=======================================
+[Kernel Items]
+AndE -> AndE and @ NE 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+Uop -> @ - 
+		(- id * ( const )
+Uop -> @ * 
+		(- id * ( const )
+Mut -> @ id 
+		(< != [ <= == > >= + - % * / ; , or ) and ] )
+Mut -> @ Mut [ Expr ] 
+		(< != [ <= == > >= + - % * / ; , or ) and ] )
+IMut -> @ const 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+IMut -> @ Call 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+IMut -> @ ( Expr ) 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+Call -> @ id ( Args ) 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+Factor -> @ IMut 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+Factor -> @ Mut 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+UE -> @ Uop UE 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+UE -> @ Factor 
+		(< != + <= == > >= - % * / ; , or ) and ] )
+NE -> @ RelE 
+		(; , or ) and ] )
+NE -> @ not NE 
+		(; , or ) and ] )
+RelE -> @ SumE 
+		(; , or ) and ] )
+RelE -> @ SumE Relop SumE 
+		(; , or ) and ] )
+SumE -> @ MulE 
+		(< != + <= == > >= - ; , or ) and ] )
+SumE -> @ SumE Sop MulE 
+		(< != + <= == > >= - ; , or ) and ] )
+MulE -> @ UE 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+MulE -> @ MulE Mop UE 
+		(!= < + <= == > >= % - * / ; , or ) and ] )
+=======================================
+             State Number: 47
+=======================================
+[Kernel Items]
+AndE -> AndE and NE @ 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 48
+=======================================
+[Kernel Items]
+ArgList -> ArgList , @ Expr 
+		() , )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < <= == > ) or >= and + - * / % , )
+Factor -> @ IMut 
+		(!= < <= == > ) or >= and + - * / % , )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= == > ) or >= and + - * / % , )
+IMut -> @ Call 
+		(< != <= == > ) or >= and + - * / % , )
+IMut -> @ ( Expr ) 
+		(< != <= == > ) or >= and + - * / % , )
+Call -> @ id ( Args ) 
+		(!= < <= == > ) or >= and + - * / % , )
+UE -> @ Uop UE 
+		(< != <= == > ) or >= and + - * / % , )
+UE -> @ Factor 
+		(< != <= == > ) or >= and + - * / % , )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > ) or >= and + - * / % , )
+MulE -> @ UE 
+		(!= < <= == > ) or >= and + - * / % , )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > ) or >= and + - , )
+SumE -> @ MulE 
+		(< != <= == > ) or >= and + - , )
+RelE -> @ SumE Relop SumE 
+		() or and , )
+RelE -> @ SumE 
+		() or and , )
+NE -> @ not NE 
+		() or and , )
+NE -> @ RelE 
+		() or and , )
+Expr -> @ SimpleE 
+		() , )
+Expr -> @ Mut = Expr 
+		() , )
+SimpleE -> @ AndE 
+		() or , )
+SimpleE -> @ SimpleE or AndE 
+		() or , )
+Mut -> @ id 
+		(= <= [ < != == > >= ) or and + - * / % , )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > >= ) or and + - * / % , )
+AndE -> @ NE 
+		() or and , )
+AndE -> @ AndE and NE 
+		() or and , )
+=======================================
+             State Number: 49
+=======================================
+[Kernel Items]
+ArgList -> ArgList , Expr @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 50
+=======================================
+[Kernel Items]
+Call -> id ( Args ) @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 51
+=======================================
+[Kernel Items]
+UE -> Uop UE @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 52
+=======================================
+[Kernel Items]
+SumE -> SumE Sop @ MulE 
+		(; < != , or ) and ] <= == > >= + - )
+
+[Non-Kernel Items]
+MulE -> @ MulE Mop UE 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+MulE -> @ UE 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+Mut -> @ id 
+		(% * / ; [ , != < ) or and ] <= == > >= + - )
+Mut -> @ Mut [ Expr ] 
+		(% * / ; [ , != < ) or and ] <= == > >= + - )
+IMut -> @ const 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+IMut -> @ Call 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+IMut -> @ ( Expr ) 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+Call -> @ id ( Args ) 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+UE -> @ Factor 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+UE -> @ Uop UE 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+Factor -> @ Mut 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+Factor -> @ IMut 
+		(% * / ; , != < ) or and ] <= == > >= + - )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+=======================================
+             State Number: 53
+=======================================
+[Kernel Items]
+RelE -> SumE Relop @ SumE 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+Uop -> @ - 
+		(- id * ( const )
+Uop -> @ * 
+		(- id * ( const )
+Mut -> @ id 
+		(; + [ % - * / , or ) and ] )
+Mut -> @ Mut [ Expr ] 
+		(; + [ % - * / , or ) and ] )
+IMut -> @ const 
+		(; + % - * / , or ) and ] )
+IMut -> @ Call 
+		(; + % - * / , or ) and ] )
+IMut -> @ ( Expr ) 
+		(; + % - * / , or ) and ] )
+Call -> @ id ( Args ) 
+		(; + - % * / , or ) and ] )
+SumE -> @ MulE 
+		(; + ] - , or ) and )
+SumE -> @ SumE Sop MulE 
+		(; + ] - , or ) and )
+MulE -> @ UE 
+		(; + - % * / , or ) and ] )
+MulE -> @ MulE Mop UE 
+		(; + - % * / , or ) and ] )
+UE -> @ Factor 
+		(; + % - * / , or ) and ] )
+UE -> @ Uop UE 
+		(; + % - * / , or ) and ] )
+Factor -> @ Mut 
+		(; + - % * / , or ) and ] )
+Factor -> @ IMut 
+		(; + - % * / , or ) and ] )
+=======================================
+             State Number: 54
+=======================================
+[Kernel Items]
+Relop -> != @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 55
+=======================================
+[Kernel Items]
+Relop -> < @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 56
+=======================================
+[Kernel Items]
+Relop -> <= @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 57
+=======================================
+[Kernel Items]
+Sop -> + @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 58
+=======================================
+[Kernel Items]
+Sop -> - @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 59
+=======================================
+[Kernel Items]
+Relop -> == @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 60
+=======================================
+[Kernel Items]
+Relop -> > @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 61
+=======================================
+[Kernel Items]
+Relop -> >= @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 62
+=======================================
+[Kernel Items]
+SumE -> SumE @ Sop MulE 
+		(+ ; , ) or and - ] )
+RelE -> SumE Relop SumE @ 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+Sop -> @ + 
+		(- id * ( const )
+Sop -> @ - 
+		(- id * ( const )
+=======================================
+             State Number: 63
+=======================================
+[Kernel Items]
+SumE -> SumE Sop MulE @ 
+		(; < != , or ) and ] <= == > >= + - )
+MulE -> MulE @ Mop UE 
+		(; < != , or ) and ] <= == > >= + - % * / )
+
+[Non-Kernel Items]
+Mop -> @ % 
+		(id - * ( const )
+Mop -> @ / 
+		(id - * ( const )
+Mop -> @ * 
+		(id - * ( const )
+=======================================
+             State Number: 64
+=======================================
+[Kernel Items]
+MulE -> MulE Mop @ UE 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+Mut -> @ Mut [ Expr ] 
+		(; [ , < != or ) and ] <= == > >= + - * / % )
+Mut -> @ id 
+		(; [ , < != or ) and ] <= == > >= + - * / % )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+Call -> @ id ( Args ) 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ ( Expr ) 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ Call 
+		(; , < != or ) and ] <= == > >= + - * / % )
+IMut -> @ const 
+		(; , < != or ) and ] <= == > >= + - * / % )
+UE -> @ Factor 
+		(; , < != or ) and ] <= == > >= + - * / % )
+UE -> @ Uop UE 
+		(; , < != or ) and ] <= == > >= + - * / % )
+Factor -> @ Mut 
+		(; , < != or ) and ] <= == > >= + - * / % )
+Factor -> @ IMut 
+		(; , < != or ) and ] <= == > >= + - * / % )
+=======================================
+             State Number: 65
+=======================================
+[Kernel Items]
+Mop -> * @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 66
+=======================================
+[Kernel Items]
+Mop -> / @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 67
+=======================================
+[Kernel Items]
+Mop -> % @ 
+		(id - * ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 68
+=======================================
+[Kernel Items]
+MulE -> MulE Mop UE @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 69
+=======================================
+[Kernel Items]
+IMut -> ( Expr @ ) 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 70
+=======================================
+[Kernel Items]
+IMut -> ( Expr ) @ 
+		(; != < , or ) and ] <= == > >= + - * / % )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 71
+=======================================
+[Kernel Items]
+NE -> not NE @ 
+		(; , ) or and ] )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 72
+=======================================
+[Kernel Items]
+VarId -> id [ @ const ] 
+		(; = , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 73
+=======================================
+[Kernel Items]
+FuncDec -> Type id ( @ Params ) CompStmt 
+		(int bool double $ )
+
+[Non-Kernel Items]
+Params ->  @ 
+		() )
+Params -> @ ParamList 
+		() )
+ParamList -> @ P 
+		() , )
+ParamList -> @ ParamList , P 
+		() , )
+P -> @ Type ParamId 
+		() , )
+Type -> @ double 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ int 
+		(id )
+=======================================
+             State Number: 74
+=======================================
+[Kernel Items]
+FuncDec -> Type id ( Params @ ) CompStmt 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 75
+=======================================
+[Kernel Items]
+Params -> ParamList @ 
+		() )
+ParamList -> ParamList @ , P 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 76
+=======================================
+[Kernel Items]
+ParamList -> P @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 77
+=======================================
+[Kernel Items]
+P -> Type @ ParamId 
+		() , )
+
+[Non-Kernel Items]
+ParamId -> @ id [ ] 
+		() , )
+ParamId -> @ id 
+		() , )
+=======================================
+             State Number: 78
+=======================================
+[Kernel Items]
+P -> Type ParamId @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 79
+=======================================
+[Kernel Items]
+ParamId -> id @ [ ] 
+		() , )
+ParamId -> id @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 80
+=======================================
+[Kernel Items]
+ParamId -> id [ @ ] 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 81
+=======================================
+[Kernel Items]
+ParamId -> id [ ] @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 82
+=======================================
+[Kernel Items]
+ParamList -> ParamList , @ P 
+		() , )
+
+[Non-Kernel Items]
+P -> @ Type ParamId 
+		() , )
+Type -> @ double 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ int 
+		(id )
+=======================================
+             State Number: 83
+=======================================
+[Kernel Items]
+ParamList -> ParamList , P @ 
+		() , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 84
+=======================================
+[Kernel Items]
+FuncDec -> Type id ( Params ) @ CompStmt 
+		(int bool double $ )
+
+[Non-Kernel Items]
+CompStmt -> @ { StmtList } 
+		(int bool double $ )
+=======================================
+             State Number: 85
+=======================================
+[Kernel Items]
+FuncDec -> Type id ( Params ) CompStmt @ 
+		(int bool double $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 86
+=======================================
+[Kernel Items]
+CompStmt -> { @ StmtList } 
+		(} else while if int { ; * bool id double not - ( const $ )
+
+[Non-Kernel Items]
+StmtList ->  @ 
+		(} while if int { ; bool * id double not - ( const )
+StmtList -> @ StmtList Stmt 
+		(} while if int { ; bool * id double not - ( const )
+=======================================
+             State Number: 87
+=======================================
+[Kernel Items]
+CompStmt -> { StmtList @ } 
+		(} else while if int { ; * bool id double not - ( const $ )
+StmtList -> StmtList @ Stmt 
+		(} while if int { ; bool * id double not - ( const )
+
+[Non-Kernel Items]
+CompStmt -> @ { StmtList } 
+		(} int if while { ; bool * id double not - ( const )
+VarDec -> @ Type IdList ; 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ WhileStmt 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ Expr ; 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ IfStmt 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ CompStmt 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ VarDec 
+		(} int if while { ; bool * id double not - ( const )
+Stmt -> @ ; 
+		(} int if while { ; bool * id double not - ( const )
+IfStmt -> @ if ( Expr ) Stmt ElseP 
+		(} int if while { ; bool * id double not - ( const )
+Expr -> @ SimpleE 
+		(; )
+Expr -> @ Mut = Expr 
+		(; )
+WhileStmt -> @ while ( Expr ) Stmt 
+		(} int if while { ; bool * id double not - ( const )
+Type -> @ double 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ int 
+		(id )
+SimpleE -> @ AndE 
+		(; or )
+SimpleE -> @ SimpleE or AndE 
+		(; or )
+Mut -> @ id 
+		(= <= ; [ < != == > >= or and + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(= <= ; [ < != == > >= or and + - * / % )
+AndE -> @ NE 
+		(; or and )
+AndE -> @ AndE and NE 
+		(; or and )
+NE -> @ RelE 
+		(; or and )
+NE -> @ not NE 
+		(; or and )
+RelE -> @ SumE 
+		(; or and )
+RelE -> @ SumE Relop SumE 
+		(; or and )
+SumE -> @ MulE 
+		(< != <= ; == > or >= and + - )
+SumE -> @ SumE Sop MulE 
+		(< != <= ; == > or >= and + - )
+MulE -> @ UE 
+		(!= < ; <= == > or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < ; <= == > or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= ; == > or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= ; == > or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < ; <= == > or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ const 
+		(< != <= ; == > or >= and + - * / % )
+Uop -> @ - 
+		(id - * ( const )
+Uop -> @ * 
+		(id - * ( const )
+Factor -> @ IMut 
+		(!= < ; <= == > or >= and + - * / % )
+Factor -> @ Mut 
+		(!= < ; <= == > or >= and + - * / % )
+=======================================
+             State Number: 88
+=======================================
+[Kernel Items]
+StmtList -> StmtList Stmt @ 
+		(} while if int { ; bool * id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 89
+=======================================
+[Kernel Items]
+Stmt -> IfStmt @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 90
+=======================================
+[Kernel Items]
+Stmt -> WhileStmt @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 91
+=======================================
+[Kernel Items]
+CompStmt -> { StmtList } @ 
+		(} else while if int { ; * bool id double not - ( const $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 92
+=======================================
+[Kernel Items]
+Stmt -> VarDec @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 93
+=======================================
+[Kernel Items]
+WhileStmt -> while @ ( Expr ) Stmt 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 94
+=======================================
+[Kernel Items]
+Stmt -> Expr @ ; 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 95
+=======================================
+[Kernel Items]
+Stmt -> CompStmt @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 96
+=======================================
+[Kernel Items]
+Stmt -> ; @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 97
+=======================================
+[Kernel Items]
+IfStmt -> if @ ( Expr ) Stmt ElseP 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 98
+=======================================
+[Kernel Items]
+VarDec -> Type @ IdList ; 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+VarId -> @ id 
+		(; = , )
+VarId -> @ id [ const ] 
+		(; = , )
+VarIni -> @ VarId 
+		(; , )
+VarIni -> @ VarId = SimpleE 
+		(; , )
+IdList -> @ IdList , VarIni 
+		(; , )
+IdList -> @ VarIni 
+		(; , )
+=======================================
+             State Number: 99
+=======================================
+[Kernel Items]
+VarId -> id @ 
+		(; = , )
+VarId -> id @ [ const ] 
+		(; = , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 100
+=======================================
+[Kernel Items]
+IfStmt -> if ( @ Expr ) Stmt ElseP 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < <= == > ) or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < <= == > ) or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= == > ) or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < <= == > ) or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= == > ) or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= == > ) or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > ) or >= and + - * / % )
+MulE -> @ UE 
+		(!= < <= == > ) or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > ) or >= and + - )
+SumE -> @ MulE 
+		(< != <= == > ) or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(or ) and )
+RelE -> @ SumE 
+		(or ) and )
+NE -> @ not NE 
+		(or ) and )
+NE -> @ RelE 
+		(or ) and )
+Expr -> @ SimpleE 
+		() )
+Expr -> @ Mut = Expr 
+		() )
+SimpleE -> @ AndE 
+		(or ) )
+SimpleE -> @ SimpleE or AndE 
+		(or ) )
+Mut -> @ id 
+		(= <= [ < != == > or ) >= and + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > or ) >= and + - * / % )
+AndE -> @ NE 
+		(or ) and )
+AndE -> @ AndE and NE 
+		(or ) and )
+=======================================
+             State Number: 101
+=======================================
+[Kernel Items]
+IfStmt -> if ( Expr @ ) Stmt ElseP 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 102
+=======================================
+[Kernel Items]
+IfStmt -> if ( Expr ) @ Stmt ElseP 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < ; <= == > or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < ; <= == > or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= ; == > or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < ; <= == > or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= ; == > or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= ; == > or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < ; <= == > or >= and + - * / % )
+MulE -> @ UE 
+		(!= < ; <= == > or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= ; == > or >= and + - )
+SumE -> @ MulE 
+		(< != <= ; == > or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(; or and )
+RelE -> @ SumE 
+		(; or and )
+NE -> @ not NE 
+		(; or and )
+NE -> @ RelE 
+		(; or and )
+AndE -> @ AndE and NE 
+		(; or and )
+AndE -> @ NE 
+		(; or and )
+Mut -> @ Mut [ Expr ] 
+		(= <= ; [ < != == > >= or and + - * / % )
+Mut -> @ id 
+		(= <= ; [ < != == > >= or and + - * / % )
+SimpleE -> @ SimpleE or AndE 
+		(; or )
+SimpleE -> @ AndE 
+		(; or )
+Type -> @ int 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ double 
+		(id )
+WhileStmt -> @ while ( Expr ) Stmt 
+		(} else int if while { ; bool * id double not - ( const )
+Expr -> @ Mut = Expr 
+		(; )
+Expr -> @ SimpleE 
+		(; )
+IfStmt -> @ if ( Expr ) Stmt ElseP 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ ; 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ VarDec 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ CompStmt 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ IfStmt 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ Expr ; 
+		(} else int if while { ; bool * id double not - ( const )
+Stmt -> @ WhileStmt 
+		(} else int if while { ; bool * id double not - ( const )
+VarDec -> @ Type IdList ; 
+		(} else int if while { ; bool * id double not - ( const )
+CompStmt -> @ { StmtList } 
+		(} else int if while { ; bool * id double not - ( const )
+=======================================
+             State Number: 103
+=======================================
+[Kernel Items]
+IfStmt -> if ( Expr ) Stmt @ ElseP 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+ElseP -> @ else Stmt 
+		(else } int if while { ; bool * id double not - ( const )
+ElseP ->  @ 
+		(else } int if while { ; bool * id double not - ( const )
+=======================================
+             State Number: 104
+=======================================
+[Kernel Items]
+ElseP -> else @ Stmt 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < ; <= == > or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < ; <= == > or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= ; == > or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < ; <= == > or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= ; == > or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= ; == > or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < ; <= == > or >= and + - * / % )
+MulE -> @ UE 
+		(!= < ; <= == > or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= ; == > or >= and + - )
+SumE -> @ MulE 
+		(< != <= ; == > or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(; or and )
+RelE -> @ SumE 
+		(; or and )
+NE -> @ not NE 
+		(; or and )
+NE -> @ RelE 
+		(; or and )
+AndE -> @ AndE and NE 
+		(; or and )
+AndE -> @ NE 
+		(; or and )
+Mut -> @ Mut [ Expr ] 
+		(= <= ; [ < != == > >= or and + - * / % )
+Mut -> @ id 
+		(= <= ; [ < != == > >= or and + - * / % )
+SimpleE -> @ SimpleE or AndE 
+		(; or )
+SimpleE -> @ AndE 
+		(; or )
+Type -> @ int 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ double 
+		(id )
+WhileStmt -> @ while ( Expr ) Stmt 
+		(else } int if while { ; bool * id double not - ( const )
+Expr -> @ Mut = Expr 
+		(; )
+Expr -> @ SimpleE 
+		(; )
+IfStmt -> @ if ( Expr ) Stmt ElseP 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ ; 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ VarDec 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ CompStmt 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ IfStmt 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ Expr ; 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ WhileStmt 
+		(else } int if while { ; bool * id double not - ( const )
+VarDec -> @ Type IdList ; 
+		(else } int if while { ; bool * id double not - ( const )
+CompStmt -> @ { StmtList } 
+		(else } int if while { ; bool * id double not - ( const )
+=======================================
+             State Number: 105
+=======================================
+[Kernel Items]
+IfStmt -> if ( Expr ) Stmt ElseP @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 106
+=======================================
+[Kernel Items]
+ElseP -> else Stmt @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 107
+=======================================
+[Kernel Items]
+Stmt -> Expr ; @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 108
+=======================================
+[Kernel Items]
+WhileStmt -> while ( @ Expr ) Stmt 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < <= == > ) or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < <= == > ) or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= == > ) or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= == > ) or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < <= == > ) or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= == > ) or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= == > ) or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < <= == > ) or >= and + - * / % )
+MulE -> @ UE 
+		(!= < <= == > ) or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= == > ) or >= and + - )
+SumE -> @ MulE 
+		(< != <= == > ) or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(or ) and )
+RelE -> @ SumE 
+		(or ) and )
+NE -> @ not NE 
+		(or ) and )
+NE -> @ RelE 
+		(or ) and )
+Expr -> @ SimpleE 
+		() )
+Expr -> @ Mut = Expr 
+		() )
+SimpleE -> @ AndE 
+		(or ) )
+SimpleE -> @ SimpleE or AndE 
+		(or ) )
+Mut -> @ id 
+		(= <= [ < != == > or ) >= and + - * / % )
+Mut -> @ Mut [ Expr ] 
+		(= <= [ < != == > or ) >= and + - * / % )
+AndE -> @ NE 
+		(or ) and )
+AndE -> @ AndE and NE 
+		(or ) and )
+=======================================
+             State Number: 109
+=======================================
+[Kernel Items]
+WhileStmt -> while ( Expr @ ) Stmt 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 110
+=======================================
+[Kernel Items]
+WhileStmt -> while ( Expr ) @ Stmt 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+Factor -> @ Mut 
+		(!= < ; <= == > or >= and + - * / % )
+Factor -> @ IMut 
+		(!= < ; <= == > or >= and + - * / % )
+Uop -> @ * 
+		(- id * ( const )
+Uop -> @ - 
+		(- id * ( const )
+IMut -> @ const 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ Call 
+		(< != <= ; == > or >= and + - * / % )
+IMut -> @ ( Expr ) 
+		(< != <= ; == > or >= and + - * / % )
+Call -> @ id ( Args ) 
+		(!= < ; <= == > or >= and + - * / % )
+UE -> @ Uop UE 
+		(< != <= ; == > or >= and + - * / % )
+UE -> @ Factor 
+		(< != <= ; == > or >= and + - * / % )
+MulE -> @ MulE Mop UE 
+		(!= < ; <= == > or >= and + - * / % )
+MulE -> @ UE 
+		(!= < ; <= == > or >= and + - * / % )
+SumE -> @ SumE Sop MulE 
+		(< != <= ; == > or >= and + - )
+SumE -> @ MulE 
+		(< != <= ; == > or >= and + - )
+RelE -> @ SumE Relop SumE 
+		(; or and )
+RelE -> @ SumE 
+		(; or and )
+NE -> @ not NE 
+		(; or and )
+NE -> @ RelE 
+		(; or and )
+AndE -> @ AndE and NE 
+		(; or and )
+AndE -> @ NE 
+		(; or and )
+Mut -> @ Mut [ Expr ] 
+		(= <= ; [ < != == > >= or and + - * / % )
+Mut -> @ id 
+		(= <= ; [ < != == > >= or and + - * / % )
+SimpleE -> @ SimpleE or AndE 
+		(; or )
+SimpleE -> @ AndE 
+		(; or )
+Type -> @ int 
+		(id )
+Type -> @ bool 
+		(id )
+Type -> @ double 
+		(id )
+WhileStmt -> @ while ( Expr ) Stmt 
+		(else } int if while { ; bool * id double not - ( const )
+Expr -> @ Mut = Expr 
+		(; )
+Expr -> @ SimpleE 
+		(; )
+IfStmt -> @ if ( Expr ) Stmt ElseP 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ ; 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ VarDec 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ CompStmt 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ IfStmt 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ Expr ; 
+		(else } int if while { ; bool * id double not - ( const )
+Stmt -> @ WhileStmt 
+		(else } int if while { ; bool * id double not - ( const )
+VarDec -> @ Type IdList ; 
+		(else } int if while { ; bool * id double not - ( const )
+CompStmt -> @ { StmtList } 
+		(else } int if while { ; bool * id double not - ( const )
+=======================================
+             State Number: 111
+=======================================
+[Kernel Items]
+WhileStmt -> while ( Expr ) Stmt @ 
+		(} else while if int { ; * bool id double not - ( const )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 112
+=======================================
+[Kernel Items]
+VarId -> id [ const @ ] 
+		(; = , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 113
+=======================================
+[Kernel Items]
+VarId -> id [ const ] @ 
+		(; = , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 114
+=======================================
+[Kernel Items]
+IdList -> IdList , @ VarIni 
+		(; , )
+
+[Non-Kernel Items]
+VarId -> @ id 
+		(= ; , )
+VarId -> @ id [ const ] 
+		(= ; , )
+VarIni -> @ VarId 
+		(; , )
+VarIni -> @ VarId = SimpleE 
+		(; , )
+=======================================
+             State Number: 115
+=======================================
+[Kernel Items]
+VarDec -> Type IdList ; @ 
+		(} else while if int { ; * bool id double not - ( const $ )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 116
+=======================================
+[Kernel Items]
+IdList -> IdList , VarIni @ 
+		(; , )
+
+[Non-Kernel Items]
+=======================================
+             State Number: 117
+=======================================
+[Kernel Items]
+DecList -> DecList Dec @ 
+		(int bool double $ )
+
+[Non-Kernel Items]
